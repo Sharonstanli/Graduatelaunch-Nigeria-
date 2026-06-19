@@ -7,19 +7,28 @@
 <title>Graduate Launch Nigeria | Graduate Trainee Programs, Internships & Scholarships</title>
 
 <meta name="description" content="Discover graduate trainee programs, internships, scholarships, fellowships, remote jobs and entry-level opportunities across Nigeria and beyond.">
+<meta name="keywords" content="graduate programs, internships, Nigeria, scholarships, fellowships, trainee, remote jobs, entry-level opportunities">
+<meta name="author" content="Graduate Launch Nigeria">
+<meta name="theme-color" content="#2563eb">
 
-<meta property="og:title" content="Graduate Launch Nigeria">
-<meta property="og:description" content="Helping graduates discover career opportunities.">
+<meta property="og:title" content="Graduate Launch Nigeria | Career Opportunities Hub">
+<meta property="og:description" content="Helping graduates discover career opportunities. Access verified graduate trainee programs, internships, scholarships, and fellowships.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://graduatelaunchngeria.com">
+<meta property="og:image" content="og-image.png">
 
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Graduate Launch Nigeria">
+<meta name="twitter:description" content="Discover verified graduate opportunities across Nigeria.">
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <!-- HEADER -->
-
-<header class="header">
+<header class="header" role="banner">
 
 <div class="container nav-container">
 
@@ -39,13 +48,15 @@ class="site-logo">
 <button
 class="hamburger"
 id="hamburger"
-aria-label="Open Navigation Menu">
+aria-label="Toggle Navigation Menu"
+aria-expanded="false"
+aria-controls="nav-menu">
 
 ☰
 
 </button>
 
-<nav id="nav-menu">
+<nav id="nav-menu" class="nav-menu" role="navigation" aria-label="Main Navigation">
 
 <ul>
 
@@ -82,7 +93,6 @@ aria-label="Open Navigation Menu">
 </header>
 
 <!-- HERO SECTION -->
-
 <section class="hero" id="home">
 
 <div class="container hero-content">
@@ -150,13 +160,13 @@ Join Newsletter
 </section>
 
 <!-- SEARCH SECTION -->
-
 <section class="search-section">
 
 <div class="container">
 
 <h2>Search Opportunities</h2>
 
+<label for="searchInput" class="sr-only">Search Opportunities</label>
 <input
 type="text"
 id="searchInput"
@@ -168,7 +178,6 @@ aria-label="Search Opportunities">
 </section>
 
 <!-- CATEGORIES -->
-
 <section id="categories" class="categories">
 
 <div class="container">
@@ -180,7 +189,9 @@ Browse Categories
 <div class="category-grid">
 
 <div class="category-card"
-data-category="Graduate Trainee">
+data-category="Graduate Trainee"
+tabindex="0"
+role="button">
 
 <h3>Graduate Trainee Programs</h3>
 
@@ -191,7 +202,9 @@ Entry routes into major companies.
 </div>
 
 <div class="category-card"
-data-category="Internship">
+data-category="Internship"
+tabindex="0"
+role="button">
 
 <h3>Internships</h3>
 
@@ -202,7 +215,9 @@ Gain practical experience.
 </div>
 
 <div class="category-card"
-data-category="Scholarship">
+data-category="Scholarship"
+tabindex="0"
+role="button">
 
 <h3>Scholarships</h3>
 
@@ -213,7 +228,9 @@ Funding for academic growth.
 </div>
 
 <div class="category-card"
-data-category="Fellowship">
+data-category="Fellowship"
+tabindex="0"
+role="button">
 
 <h3>Fellowships</h3>
 
@@ -224,7 +241,9 @@ Leadership and professional development.
 </div>
 
 <div class="category-card"
-data-category="Entry-Level">
+data-category="Entry-Level"
+tabindex="0"
+role="button">
 
 <h3>Entry-Level Jobs</h3>
 
@@ -235,7 +254,9 @@ Career opportunities for graduates.
 </div>
 
 <div class="category-card"
-data-category="Remote">
+data-category="Remote"
+tabindex="0"
+role="button">
 
 <h3>Remote Opportunities</h3>
 
@@ -252,7 +273,6 @@ Work from anywhere opportunities.
 </section>
 
 <!-- FEATURED OPPORTUNITIES -->
-
 <section id="featured" class="featured">
 
 <div class="container">
@@ -273,7 +293,6 @@ class="opportunities-grid">
 </section>
 
 <!-- LATEST OPPORTUNITIES -->
-
 <section class="latest">
 
 <div class="container">
@@ -292,8 +311,8 @@ class="opportunities-grid">
 </div>
 
 </section>
-<!-- NEWSLETTER -->
 
+<!-- NEWSLETTER -->
 <section id="newsletter" class="newsletter">
 
 <div class="container">
@@ -305,19 +324,23 @@ Get graduate trainee programs, scholarships,
 internships and fellowships delivered to your inbox.
 </p>
 
-<form id="newsletterForm">
+<form id="newsletterForm" aria-labelledby="newsletter">
 
+<label for="subscriberName" class="sr-only">Your Name</label>
 <input
 type="text"
 id="subscriberName"
 placeholder="Your Name"
-required>
+required
+aria-required="true">
 
+<label for="subscriberEmail" class="sr-only">Your Email Address</label>
 <input
 type="email"
 id="subscriberEmail"
 placeholder="Your Email Address"
-required>
+required
+aria-required="true">
 
 <button type="submit" class="btn-primary">
 
@@ -327,14 +350,13 @@ Subscribe
 
 </form>
 
-<p id="newsletterMessage"></p>
+<p id="newsletterMessage" aria-live="polite"></p>
 
 </div>
 
 </section>
 
 <!-- CAREER TIPS -->
-
 <section id="career-tips" class="career-tips">
 
 <div class="container">
@@ -347,7 +369,7 @@ Career Tips
 
 <div class="tips-grid">
 
-<div class="tip-card">
+<article class="tip-card">
 
 <h3>Build a Strong CV</h3>
 
@@ -358,9 +380,9 @@ Highlight measurable achievements.
 
 </p>
 
-</div>
+</article>
 
-<div class="tip-card">
+<article class="tip-card">
 
 <h3>Optimize LinkedIn</h3>
 
@@ -371,9 +393,9 @@ engage with industry content.
 
 </p>
 
-</div>
+</article>
 
-<div class="tip-card">
+<article class="tip-card">
 
 <h3>Prepare for Interviews</h3>
 
@@ -384,9 +406,9 @@ research the organization.
 
 </p>
 
-</div>
+</article>
 
-<div class="tip-card">
+<article class="tip-card">
 
 <h3>Develop In-Demand Skills</h3>
 
@@ -397,7 +419,7 @@ skills that employers seek.
 
 </p>
 
-</div>
+</article>
 
 </div>
 
@@ -406,7 +428,6 @@ skills that employers seek.
 </section>
 
 <!-- ABOUT -->
-
 <section id="about" class="about">
 
 <div class="container">
@@ -439,7 +460,6 @@ regardless of location or background.
 </section>
 
 <!-- CONTACT -->
-
 <section id="contact" class="contact">
 
 <div class="container">
@@ -450,25 +470,31 @@ Contact Us
 
 </h2>
 
-<form id="contactForm">
+<form id="contactForm" aria-labelledby="contact">
 
+<label for="contactName" class="sr-only">Your Name</label>
 <input
 type="text"
 id="contactName"
 placeholder="Your Name"
-required>
+required
+aria-required="true">
 
+<label for="contactEmail" class="sr-only">Your Email</label>
 <input
 type="email"
 id="contactEmail"
 placeholder="Your Email"
-required>
+required
+aria-required="true">
 
+<label for="contactMessage" class="sr-only">Your Message</label>
 <textarea
 id="contactMessage"
 rows="6"
 placeholder="Your Message"
-required>
+required
+aria-required="true">
 
 </textarea>
 
@@ -482,23 +508,23 @@ Send Message
 
 </form>
 
-<p id="contactStatus"></p>
+<p id="contactStatus" aria-live="polite"></p>
 
 <div class="social-links">
 
-<a href="#">
+<a href="https://facebook.com" rel="noopener noreferrer" target="_blank" aria-label="Visit our Facebook page">
 Facebook
 </a>
 
-<a href="#">
+<a href="https://twitter.com" rel="noopener noreferrer" target="_blank" aria-label="Visit our Twitter profile">
 Twitter
 </a>
 
-<a href="#">
+<a href="https://linkedin.com" rel="noopener noreferrer" target="_blank" aria-label="Visit our LinkedIn page">
 LinkedIn
 </a>
 
-<a href="#">
+<a href="https://instagram.com" rel="noopener noreferrer" target="_blank" aria-label="Visit our Instagram profile">
 Instagram
 </a>
 
@@ -509,8 +535,7 @@ Instagram
 </section>
 
 <!-- FOOTER -->
-
-<footer class="footer">
+<footer class="footer" role="contentinfo">
 
 <div class="container">
 
@@ -567,13 +592,13 @@ Legal
 <ul>
 
 <li>
-<a href="#">
+<a href="privacy-policy.html">
 Privacy Policy
 </a>
 </li>
 
 <li>
-<a href="#">
+<a href="terms-of-use.html">
 Terms of Use
 </a>
 </li>
@@ -598,16 +623,17 @@ All Rights Reserved.
 </footer>
 
 <!-- BACK TO TOP -->
-
 <button
 id="backToTop"
-aria-label="Back To Top">
+class="back-to-top"
+aria-label="Back to Top"
+title="Scroll to top">
 
 ↑
 
 </button>
 
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 
 </body>
 
