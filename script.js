@@ -14,7 +14,7 @@ organization: "XYZ Bank",
 location: "Lagos, Nigeria",
 deadline: "July 30, 2026",
 description: "XYZ Bank is recruiting graduates into its trainee program.",
-link: "www.facebook.com"
+link: "https://www.example.com/apply"
 },
 
 {
@@ -156,18 +156,17 @@ ${item.organization}
 </p>
 
 <p class="location">
-${item.location}
+📍 ${item.location}
 </p>
 
 <p>
 ${item.description}
 </p>
 
-<br>
-
 <a
 href="${item.link}"
 class="btn-primary"
+rel="noopener noreferrer"
 target="_blank">
 
 Apply Now
@@ -220,27 +219,29 @@ renderLatest(opportunities);
 const searchInput =
 document.getElementById("searchInput");
 
-searchInput.addEventListener("keyup", ()=>{
+if(searchInput) {
+  searchInput.addEventListener("keyup", ()=>{
 
-const keyword =
-searchInput.value.toLowerCase();
+  const keyword =
+  searchInput.value.toLowerCase();
 
-const filtered =
-opportunities.filter(item =>
+  const filtered =
+  opportunities.filter(item =>
 
-item.title.toLowerCase().includes(keyword) ||
+  item.title.toLowerCase().includes(keyword) ||
 
-item.organization.toLowerCase().includes(keyword) ||
+  item.organization.toLowerCase().includes(keyword) ||
 
-item.location.toLowerCase().includes(keyword) ||
+  item.location.toLowerCase().includes(keyword) ||
 
-item.category.toLowerCase().includes(keyword)
+  item.category.toLowerCase().includes(keyword)
 
-);
+  );
 
-renderLatest(filtered);
+  renderLatest(filtered);
 
-});
+  });
+}
 
 /* Category Filter */
 
@@ -265,6 +266,16 @@ renderLatest(filtered);
 
 });
 
+// Support keyboard activation (Enter and Space)
+card.addEventListener("keydown", (e) => {
+  if(e.key === "Enter" || e.key === " "){
+    e.preventDefault();
+    const category = card.dataset.category;
+    const filtered = opportunities.filter(item => item.category === category);
+    renderLatest(filtered);
+  }
+});
+
 });
 
 /* Mobile Menu */
@@ -272,17 +283,20 @@ renderLatest(filtered);
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector("#nav-menu");
 
-hamburger.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-});
-
-// Close menu when a link is clicked
-document.querySelectorAll("#nav-menu a").forEach(link => {
+if(hamburger && navMenu) {
+  hamburger.addEventListener("click", () => {
+    const isActive = navMenu.classList.toggle("active");
+    hamburger.setAttribute("aria-expanded", isActive);
+  });
+  
+  // Close menu when a link is clicked
+  document.querySelectorAll("#nav-menu a").forEach(link => {
     link.addEventListener("click", () => {
-        navMenu.classList.remove("active");
+      navMenu.classList.remove("active");
+      hamburger.setAttribute("aria-expanded", false);
     });
-});
-
+  });
+}
 
 /* Newsletter Validation */
 
@@ -292,44 +306,59 @@ document.getElementById("newsletterForm");
 const newsletterMessage =
 document.getElementById("newsletterMessage");
 
-newsletterForm.addEventListener(
-"submit",
-function(e){
-
-e.preventDefault();
-
-const name =
-document.getElementById(
-"subscriberName"
-).value.trim();
-
-const email =
-document.getElementById(
-"subscriberEmail"
-).value.trim();
-
-if(name === "" || email === ""){
-
-newsletterMessage.innerHTML =
-"Please complete all fields.";
-
-newsletterMessage.style.color =
-"yellow";
-
-return;
-
+if(newsletterForm) {
+  newsletterForm.addEventListener(
+  "submit",
+  function(e){
+  
+  e.preventDefault();
+  
+  const name =
+  document.getElementById(
+  "subscriberName"
+  ).value.trim();
+  
+  const email =
+  document.getElementById(
+  "subscriberEmail"
+  ).value.trim();
+  
+  // Basic email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  if(name === "" || email === ""){
+  
+  newsletterMessage.innerHTML =
+  "Please complete all fields.";
+  
+  newsletterMessage.style.color =
+  "yellow";
+  
+  return;
+  
+  }
+  
+  if(!emailRegex.test(email)){
+    newsletterMessage.innerHTML =
+    "Please enter a valid email address.";
+    
+    newsletterMessage.style.color =
+    "yellow";
+    
+    return;
+  }
+  
+  newsletterMessage.innerHTML =
+  "Subscription successful! Check your email.";
+  
+  newsletterMessage.style.color =
+  "#4ade80";
+  
+  newsletterForm.reset();
+  
+  }
+  );
 }
-
-newsletterMessage.innerHTML =
-"Subscription successful!";
-
-newsletterMessage.style.color =
-"#4ade80";
-
-newsletterForm.reset();
-
-}
-);
 
 /* Contact Validation */
 
@@ -339,92 +368,109 @@ document.getElementById("contactForm");
 const contactStatus =
 document.getElementById("contactStatus");
 
-contactForm.addEventListener(
-"submit",
-function(e){
-
-e.preventDefault();
-
-const name =
-document.getElementById(
-"contactName"
-).value.trim();
-
-const email =
-document.getElementById(
-"contactEmail"
-).value.trim();
-
-const message =
-document.getElementById(
-"contactMessage"
-).value.trim();
-
-if(
-name === "" ||
-email === "" ||
-message === ""
-){
-
-contactStatus.innerHTML =
-"Please complete all fields.";
-
-contactStatus.style.color =
-"red";
-
-return;
-
+if(contactForm) {
+  contactForm.addEventListener(
+  "submit",
+  function(e){
+  
+  e.preventDefault();
+  
+  const name =
+  document.getElementById(
+  "contactName"
+  ).value.trim();
+  
+  const email =
+  document.getElementById(
+  "contactEmail"
+  ).value.trim();
+  
+  const message =
+  document.getElementById(
+  "contactMessage"
+  ).value.trim();
+  
+  // Basic email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  if(
+  name === "" ||
+  email === "" ||
+  message === ""
+  ){
+  
+  contactStatus.innerHTML =
+  "Please complete all fields.";
+  
+  contactStatus.style.color =
+  "red";
+  
+  return;
+  
+  }
+  
+  if(!emailRegex.test(email)){
+    contactStatus.innerHTML =
+    "Please enter a valid email address.";
+    
+    contactStatus.style.color =
+    "red";
+    
+    return;
+  }
+  
+  contactStatus.innerHTML =
+  "Message sent successfully! We'll get back to you soon.";
+  
+  contactStatus.style.color =
+  "green";
+  
+  contactForm.reset();
+  
+  }
+  );
 }
-
-contactStatus.innerHTML =
-"Message sent successfully.";
-
-contactStatus.style.color =
-"green";
-
-contactForm.reset();
-
-}
-);
 
 /* Back To Top */
 
 const backToTop =
 document.getElementById("backToTop");
 
-window.addEventListener(
-"scroll",
-()=>{
-
-if(window.scrollY > 400){
-
-backToTop.style.display =
-"block";
-
-}else{
-
-backToTop.style.display =
-"none";
-
+if(backToTop) {
+  window.addEventListener(
+  "scroll",
+  ()=>{
+  
+  if(window.scrollY > 400){
+  
+  backToTop.style.display =
+  "block";
+  
+  }else{
+  
+  backToTop.style.display =
+  "none";
+  
+  }
+  
+  }
+  );
+  
+  backToTop.addEventListener(
+  "click",
+  ()=>{
+  
+  window.scrollTo({
+  
+  top:0,
+  
+  behavior:"smooth"
+  
+  });
+  
+  }
+  );
 }
-
-}
-);
-
-backToTop.addEventListener(
-"click",
-()=>{
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-}
-);
 
 /* Fade-In Animation */
 
